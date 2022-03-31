@@ -1,0 +1,9 @@
+<mvc:View
+    controllerName="flightinfo.controller.FlightList"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    id="FlightList"
+>
+
+</mvc:View>

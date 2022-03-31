@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://bap:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://bap:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://bap:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://bap:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://bap:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://bap:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://bap:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://bap:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://bap:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="cds_zui_bap_flight" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="CarrierType" sap:label="Carriers" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Carrid"/>
+                </Key>
+                <Property Name="Carrid" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Airline" sap:quickinfo="Airline Code"/>
+                <Property Name="Carrname" Type="Edm.String" MaxLength="20" sap:label="Airline" sap:quickinfo="Airline name"/>
+                <Property Name="Currcode" Type="Edm.String" MaxLength="5" sap:label="Airline Currency" sap:quickinfo="Local currency of airline" sap:semantics="currency-code"/>
+                <Property Name="Url" Type="Edm.String" MaxLength="255" sap:label="URL" sap:quickinfo="Airline URL"/>
+                <NavigationProperty Name="to_Flights" Relationship="cds_zui_bap_flight.assoc_69039DA45C1AC59536CE53D6BF63D6F4" FromRole="FromRole_assoc_69039DA45C1AC59536CE53D6BF63D6F4" ToRole="ToRole_assoc_69039DA45C1AC59536CE53D6BF63D6F4"/>
+            </EntityType>
+            <EntityType Name="FlightType" sap:label="Flight Schedule" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Carrid"/>
+                    <PropertyRef Name="Connid"/>
+                </Key>
+                <Property Name="Carrid" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Airline" sap:quickinfo="Airline Code" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Connid" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Connection Number" sap:quickinfo="Flight Connection Number"/>
+                <Property Name="CountryFrom" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country/Region Key"/>
+                <Property Name="CityFrom" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Depart. city" sap:quickinfo="Departure city"/>
+                <Property Name="AirportFrom" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Departure airport"/>
+                <Property Name="CountryTo" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country/Region Key"/>
+                <Property Name="CityTo" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Arrival city"/>
+                <Property Name="AirportTo" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Destination airport"/>
+                <Property Name="FlightTime" Type="Edm.Int32"/>
+                <Property Name="DepartureTime" Type="Edm.Time" Precision="0" sap:label="Departure time"/>
+                <Property Name="ArrivalTime" Type="Edm.Time" Precision="0" sap:label="Arrival Time" sap:quickinfo="Arrival time"/>
+                <NavigationProperty Name="to_Carrier" Relationship="cds_zui_bap_flight.assoc_4915914E48F77E7EE72458E74C1AA3B4" FromRole="FromRole_assoc_4915914E48F77E7EE72458E74C1AA3B4" ToRole="ToRole_assoc_4915914E48F77E7EE72458E74C1AA3B4"/>
+            </EntityType>
+            <Association Name="assoc_69039DA45C1AC59536CE53D6BF63D6F4" sap:content-version="1">
+                <End Type="cds_zui_bap_flight.CarrierType" Multiplicity="1" Role="FromRole_assoc_69039DA45C1AC59536CE53D6BF63D6F4"/>
+                <End Type="cds_zui_bap_flight.FlightType" Multiplicity="*" Role="ToRole_assoc_69039DA45C1AC59536CE53D6BF63D6F4"/>
+            </Association>
+            <Association Name="assoc_4915914E48F77E7EE72458E74C1AA3B4" sap:content-version="1">
+                <End Type="cds_zui_bap_flight.FlightType" Multiplicity="1" Role="FromRole_assoc_4915914E48F77E7EE72458E74C1AA3B4"/>
+                <End Type="cds_zui_bap_flight.CarrierType" Multiplicity="1" Role="ToRole_assoc_4915914E48F77E7EE72458E74C1AA3B4"/>
+            </Association>
+            <EntityContainer Name="cds_zui_bap_flight_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="Carrier" EntityType="cds_zui_bap_flight.CarrierType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Flight" EntityType="cds_zui_bap_flight.FlightType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_69039DA45C1AC59536CE53D6BF63D6F4" Association="cds_zui_bap_flight.assoc_69039DA45C1AC59536CE53D6BF63D6F4" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Carrier" Role="FromRole_assoc_69039DA45C1AC59536CE53D6BF63D6F4"/>
+                    <End EntitySet="Flight" Role="ToRole_assoc_69039DA45C1AC59536CE53D6BF63D6F4"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_4915914E48F77E7EE72458E74C1AA3B4" Association="cds_zui_bap_flight.assoc_4915914E48F77E7EE72458E74C1AA3B4" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Flight" Role="FromRole_assoc_4915914E48F77E7EE72458E74C1AA3B4"/>
+                    <End EntitySet="Carrier" Role="ToRole_assoc_4915914E48F77E7EE72458E74C1AA3B4"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="cds_zui_bap_flight.cds_zui_bap_flight_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://bap:44300/sap/opu/odata/sap/ZUI_C_BAP_FLIGHT/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://bap:44300/sap/opu/odata/sap/ZUI_C_BAP_FLIGHT/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
