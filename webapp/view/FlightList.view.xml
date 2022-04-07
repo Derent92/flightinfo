@@ -5,5 +5,20 @@
     xmlns="sap.m"
     id="FlightList"
 >
+<Page id="flightList" title="FlightList" showNavButton="true" navButtonPress="onNavBack">
+    <List
+		id="flights"
+		class="sapUiResponsiveMargin"
+		width="auto"
+		items="{to_Flights}">
+		        <items>
+                <ObjectListItem type="Active" title="{Carrid}" intro="{Carrname}" bindingContexts="{to_Flights}" id="flList">     
+                        <firstStatus>
+                            <ObjectStatus text="From: {AirportFrom} To: {AirportTo}" icon="sap-icon://flight" id="status0"/>
+                        </firstStatus>
+			        </ObjectListItem>
+		    </items>
+	</List>
+</Page>
 
 </mvc:View>

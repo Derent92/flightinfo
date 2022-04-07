@@ -106,7 +106,7 @@
                 {
                     "name": "Carriers",
                     "pattern": "",
-                    "target": [ "Carriers" ]
+                    "target": [ "CarrierList" ]
                 },
                 {
                     "name": "FlightList",
@@ -116,16 +116,13 @@
                 }
             ],
             "targets": {
-                "Carriers": {
+                "CarrierList": {
                     "viewType": "XML",
-                    "viewName": "Carriers",
-                    "viewId": "Carriers"
+                    "viewName": "Carriers"
                 },
                 "FlightList": {
                     "viewType": "XML",
-                    "viewName": "FlightList",
-                    "viewId": "FlightList"
-                
+                    "viewName": "FlightList"
                 }
 
             }
@@ -134,7 +131,7 @@
             "viewName": "flightinfo.view.Carriers",
             "type": "XML",
             "async": true,
-            "id": "Carriers"
+            "id": "CarrierList"
         }
     },
     "sap.cloud": {
